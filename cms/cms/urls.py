@@ -1,6 +1,8 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from companies.views import CompanyViewSet
+from django.contrib import admin
+
 from departments.views import DepartmentViewSet
 from employees.views import EmployeeViewSet
 from projects.views import ProjectViewSet
@@ -16,5 +18,12 @@ router.register('projects', ProjectViewSet, basename='project')
 router.register('reviews', PerformanceReviewViewSet, basename='review')
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('admin/', admin.site.urls),
+    path('api/', include('users.urls')), 
+    path('api/companies/', include('companies.urls')),
+    path('api/departments/', include('departments.urls')),
+    path('api/employees/', include('employees.urls')),
+    path('api/projects/', include('projects.urls')),
+    path('api/reviews/', include('reviews.urls')),
+
 ]
